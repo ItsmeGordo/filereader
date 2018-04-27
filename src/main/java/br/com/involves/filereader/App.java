@@ -16,8 +16,9 @@ public class App {
 		CsvRepository repository = csvReader.process(br);
 
 		printCommands();
-		printColumns(repository);
-		waitCommand(repository);
+    	System.out.println("\nColunas disponiveis:");
+    	repository.printColumns();
+    	waitCommand(repository);
 
 	}
 
@@ -43,12 +44,5 @@ public class App {
         System.out.println("count distinct [propriedade]");
         System.out.println("filter [propriedade] [valor]");
     }
-    
-    private static void printColumns(CsvRepository repository) {
-    	System.out.println("\nColunas disponiveis:");
-    	for (Integer key : repository.getHeader().keySet()) {
-        	System.out.println(repository.getHeader().get(key));
-    	}
-    }
-    
+
 }

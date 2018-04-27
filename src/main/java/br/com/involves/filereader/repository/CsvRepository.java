@@ -62,4 +62,28 @@ public class CsvRepository {
 		this.cidades = cidades;
 	}
 
+	public void printCidadesFilter(Cidade cidade) {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(cidade.getId() + ",");
+		buffer.append(cidade.getUf() + ",");
+		buffer.append(cidade.getNome() + ",");
+		buffer.append(cidade.getCapital() + ",");
+		buffer.append(cidade.getLatitude() + ",");
+		buffer.append(cidade.getLongitude() + ",");
+		buffer.append(cidade.getNomeSemAcento() + ",");
+		buffer.append(cidade.getNomeAlternativo() + ",");
+		buffer.append(cidade.getMicroRegiao() + ",");
+		buffer.append(cidade.getMesoRegiao());
+
+		System.out.println(buffer.toString());
+	}
+	
+    public void printColumns() {
+    	StringBuffer buffer = new StringBuffer();
+    	for (Integer key : this.getHeader().keySet()) {
+    		buffer.append(this.getHeader().get(key) + ",");
+    	}
+    	System.out.println(buffer.substring(0, buffer.length() - 1));
+    }
+
 }

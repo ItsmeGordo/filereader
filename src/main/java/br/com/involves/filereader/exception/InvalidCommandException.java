@@ -2,7 +2,9 @@ package br.com.involves.filereader.exception;
 
 public class InvalidCommandException extends RuntimeException {
 
-    public InvalidCommandException(String message) {
+	private static final long serialVersionUID = 1L;
+
+	public InvalidCommandException(String message) {
         super(message);
     }
 

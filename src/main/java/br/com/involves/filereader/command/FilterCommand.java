@@ -1,5 +1,6 @@
 package br.com.involves.filereader.command;
 
+import br.com.involves.filereader.dto.Cidade;
 import br.com.involves.filereader.repository.CsvRepository;
 
 public class FilterCommand implements Command {
@@ -12,47 +13,47 @@ public class FilterCommand implements Command {
 		super();
 		this.repository = repo;
 		this.coluna = coluna;
+		this.valor = valor;
 	}
 
 	@Override
 	public void execute() {
-		long count;
 		switch (coluna) {
 		case CsvRepository.ID_IBGE:
-			count = repository.getCidades().stream().filter(c -> c.getId().toString().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getId().toString().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.UF:
-			count = repository.getCidades().stream().filter(c -> c.getUf().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getUf().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.NOME:
-			count = repository.getCidades().stream().filter(c -> c.getNome().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getNome().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.CAPITAL:
-			count = repository.getCidades().stream().filter(c -> c.getCapital().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getCapital().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.LONGITUDE:
-			count = repository.getCidades().stream().filter(c -> c.getLongitude().toString().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getLongitude().toString().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.LATITUDE:
-			count = repository.getCidades().stream().filter(c -> c.getLatitude().toString().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getLatitude().toString().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.NOME_SEM_ACENTO:
-			count = repository.getCidades().stream().filter(c -> c.getNomeSemAcento().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getNomeSemAcento().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.NOME_ALTERNATIVO:
-			count = repository.getCidades().stream().filter(c -> c.getNomeAlternativo().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getNomeAlternativo().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.MICROREGIAO:
-			count = repository.getCidades().stream().filter(c -> c.getMicroRegiao().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getMicroRegiao().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.MESOREGIAO:
-			count = repository.getCidades().stream().filter(c -> c.getMesoRegiao().equals(valor)).count();
+			repository.getCidades().stream().filter(c -> c.getMesoRegiao().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		default:
-			count = 0L;
+			System.out.println("Não foi encontrado resultado para o filtro encontrado!");
 			break;
 		}
-		System.out.println("Total: " + count);
 	}
+	
 
 }

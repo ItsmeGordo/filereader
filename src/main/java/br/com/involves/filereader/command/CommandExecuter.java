@@ -22,7 +22,7 @@ public class CommandExecuter {
 			if ("*".equals(splitCommand[1])) {
 				command = new CountCommand(repository.getCidades());
 			} else if ("distinct".equalsIgnoreCase(splitCommand[1])) {
-				command = new CountCommand(repository.getCidades());
+				command = new CountDistinctCommand(repository, splitCommand[2]);
 			}
 		} else if ("filter".equals(splitCommand[0]) && splitCommand.length == 3 && repository.getHeader().values().contains(splitCommand[1])) {
 			command = new FilterCommand(repository, splitCommand[1], splitCommand[2]);
