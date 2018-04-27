@@ -1,4 +1,4 @@
-package br.com.involves.dto;
+package br.com.involves.filereader.dto;
 
 public class Cidade {
 
@@ -173,6 +173,92 @@ public class Cidade {
 
 	public void setMesoRegiao(String mesoRegiao) {
 		this.mesoRegiao = mesoRegiao;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((capital == null) ? 0 : capital.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
+		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
+		result = prime * result + ((mesoRegiao == null) ? 0 : mesoRegiao.hashCode());
+		result = prime * result + ((microRegiao == null) ? 0 : microRegiao.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((nomeAlternativo == null) ? 0 : nomeAlternativo.hashCode());
+		result = prime * result + ((nomeSemAcento == null) ? 0 : nomeSemAcento.hashCode());
+		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cidade other = (Cidade) obj;
+		if (capital == null) {
+			if (other.capital != null)
+				return false;
+		} else if (!capital.equals(other.capital))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (latitude == null) {
+			if (other.latitude != null)
+				return false;
+		} else if (!latitude.equals(other.latitude))
+			return false;
+		if (longitude == null) {
+			if (other.longitude != null)
+				return false;
+		} else if (!longitude.equals(other.longitude))
+			return false;
+		if (mesoRegiao == null) {
+			if (other.mesoRegiao != null)
+				return false;
+		} else if (!mesoRegiao.equals(other.mesoRegiao))
+			return false;
+		if (microRegiao == null) {
+			if (other.microRegiao != null)
+				return false;
+		} else if (!microRegiao.equals(other.microRegiao))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (nomeAlternativo == null) {
+			if (other.nomeAlternativo != null)
+				return false;
+		} else if (!nomeAlternativo.equals(other.nomeAlternativo))
+			return false;
+		if (nomeSemAcento == null) {
+			if (other.nomeSemAcento != null)
+				return false;
+		} else if (!nomeSemAcento.equals(other.nomeSemAcento))
+			return false;
+		if (uf == null) {
+			if (other.uf != null)
+				return false;
+		} else if (!uf.equals(other.uf))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Cidade [id=" + id + ", uf=" + uf + ", nome=" + nome + ", capital=" + capital + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", nomeSemAcento=" + nomeSemAcento + ", nomeAlternativo="
+				+ nomeAlternativo + ", microRegiao=" + microRegiao + ", mesoRegiao=" + mesoRegiao + "]";
 	}
 
 }
