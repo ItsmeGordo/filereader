@@ -65,7 +65,7 @@ ibge_id,uf,name,capital,lon,lat,no_accents,alternative_names,microregion,mesoreg
 1200351,AC,Marechal Thaumaturgo,,-72.7902659087,-8.9535911232,Marechal Thaumaturgo,,Cruzeiro do Sul,Vale do Juruá
 1200385,AC,Plácido de Castro,,-67.1882600862,-10.3351332827,Placido de Castro,,Rio Branco,Vale do Acre
 1200393,AC,Porto Walter,,-72.7423339648,-8.2666663628,Porto Walter,,Cruzeiro do Sul,Vale do Juruá
-1200401,AC,Rio Branco,true,-67.8105287004,-9.9782987527,Rio Branco,,Rio Branco,Vale do Acre
+2400208,RN,Açu,,-36.91792322,-5.5719459992,Acu,Assu,Vale do Açu,Oeste Potiguar
 1200427,AC,Rodrigues Alves,,-72.6478549142,-7.7336020337,Rodrigues Alves,,Cruzeiro do Sul,Vale do Juruá
 1200435,AC,Santa Rosa do Purus,,-70.4864968938,-9.4434065374,Santa Rosa do Purus,,Sena Madureira,Vale do Acre
 4218301,SC,Três Barras,,-50.305419368,-26.1140963368,Tres Barras,,Canoinhas,Norte Catarinense

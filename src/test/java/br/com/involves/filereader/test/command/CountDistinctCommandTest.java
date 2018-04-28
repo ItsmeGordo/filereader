@@ -13,7 +13,7 @@ import br.com.involves.filereader.exception.InvalidCommandException;
 import br.com.involves.filereader.reader.CSVReader;
 import br.com.involves.filereader.repository.CsvRepository;
 
-public class CommandTest {
+public class CountDistinctCommandTest {
 
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 	CsvRepository repo;
@@ -22,17 +22,11 @@ public class CommandTest {
 	@Before
 	public void init() {
 		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidades.csv");
+		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
 		repo = csvReader.process(br);
 		executer = new CommandExecuter(repo);
 	    System.setOut(new PrintStream(output));
 
-	}
-
-	@Test
-	public void CountCommmandTest() {
-		executer.executeCommand("count *");
-	    Assert.assertEquals("Total: 70", output.toString().trim());
 	}
 
 	@Test
@@ -44,7 +38,7 @@ public class CommandTest {
 	@Test
 	public void CountDistinctCommmandUfTest() {
 	    executer.executeCommand("count distinct uf");
-	    Assert.assertEquals("Total: 2", output.toString().trim());
+	    Assert.assertEquals("Total: 4", output.toString().trim());
 	}
 
 	@Test
@@ -62,30 +56,6 @@ public class CommandTest {
 	@Test(expected = InvalidCommandException.class)
 	public void CountDistinctCommandWithoutProperty() {
 	    executer.executeCommand("count distinct");
-	}
-
-	@Test
-	public void FilterCommmandIdTest() {
-		executer.executeCommand("filter ibge_id 1100023");
-	    Assert.assertEquals("1100023,RO,Ariquemes,,-63.033269278,-9.9084628666,Ariquemes,,Ariquemes,Leste Rondoniense", output.toString().trim());
-	}
-
-	@Test
-	public void FilterCommmandUFTest() {
-		executer.executeCommand("filter uf SC");
-	    Assert.assertEquals("4218301,SC,Três Barras,,-50.305419368,-26.1140963368,Tres Barras,,Canoinhas,Norte Catarinense", output.toString().trim());
-	}
-
-	@Test
-	public void FilterCommmandLatTest() {
-		executer.executeCommand("filter lat -9.9084628666");
-	    Assert.assertEquals("1100023,RO,Ariquemes,,-63.033269278,-9.9084628666,Ariquemes,,Ariquemes,Leste Rondoniense", output.toString().trim());
-	}
-
-	@Test
-	public void FilterCommmandLonTest() {
-		executer.executeCommand("filter lon -63.033269278");
-	    Assert.assertEquals("1100023,RO,Ariquemes,,-63.033269278,-9.9084628666,Ariquemes,,Ariquemes,Leste Rondoniense", output.toString().trim());
 	}
 
 }

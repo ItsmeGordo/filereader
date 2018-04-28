@@ -27,8 +27,13 @@ public class CommandExecuter {
 				else
 					throw new InvalidCommandException("O comando correto seria count distinct [coluna]");
 			}
-		} else if ("filter".equals(splitCommand[0]) && splitCommand.length == 3 && repository.getHeader().values().contains(splitCommand[1])) {
-			command = new FilterCommand(repository, splitCommand[1], splitCommand[2]);
+		} else if ("filter".equals(splitCommand[0]) && splitCommand.length >= 3 && repository.getHeader().values().contains(splitCommand[1])) {
+			StringBuffer buffer = new StringBuffer();
+			for (int i = 2; i < splitCommand.length; i++) {
+				buffer.append(splitCommand[i]);
+				buffer.append(" ");
+			}
+			command = new FilterCommand(repository, splitCommand[1], buffer.toString().trim());
 		}
 		
 		if (command != null)

@@ -12,7 +12,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidades.csv");
+		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
 		CsvRepository repository = csvReader.process(br);
 
 		printCommands();

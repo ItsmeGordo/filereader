@@ -15,7 +15,7 @@ public class CSVReaderTest {
 	@Test
 	public void readerTest() throws IOException {
 		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidades.csv");
+		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
 		String line = br.readLine();
 
 		Assert.assertNotNull(line);
@@ -27,15 +27,17 @@ public class CSVReaderTest {
 	@Test
 	public void readerTestError() {
 		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidadess.csv");
+		BufferedReader br = csvReader.reader("cidadess.csv", "UTF-8");
 		Assert.assertNull(br);
 
+		br = csvReader.reader("cidades.csv", "UTF888");
+		Assert.assertNull(br);
 	}
 
 	@Test
 	public void processTest() {
 		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidades.csv");
+		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
 		CsvRepository repo = csvReader.process(br);
 
 		Assert.assertNotNull("Objeto cidade retornou nulo", repo.getCidades());
