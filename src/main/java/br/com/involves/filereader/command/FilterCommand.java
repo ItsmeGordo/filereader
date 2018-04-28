@@ -50,7 +50,7 @@ public class FilterCommand implements Command {
 			repository.getCidades().stream().filter(c -> c.getMesoRegiao().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		default:
-			System.out.println("Não foi encontrado resultado para o filtro encontrado!");
+			System.out.println("A coluna especificada como filtro não existe!");
 			break;
 		}
 	}

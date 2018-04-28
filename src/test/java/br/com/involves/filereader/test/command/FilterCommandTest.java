@@ -94,4 +94,10 @@ public class FilterCommandTest {
 	    Assert.assertEquals("", output.toString().trim());
 	}
 
+	@Test
+	public void FilterCommmandInvalidColumnTest() {
+		executer.executeCommand("filter erro aaaaaaa");
+	    Assert.assertEquals("A coluna especificada como filtro não existe!", output.toString().trim());
+	}
+
 }

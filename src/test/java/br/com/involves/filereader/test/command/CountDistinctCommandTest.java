@@ -1,33 +1,11 @@
 package br.com.involves.filereader.test.command;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import br.com.involves.filereader.command.CommandExecuter;
 import br.com.involves.filereader.exception.InvalidCommandException;
-import br.com.involves.filereader.reader.CSVReader;
-import br.com.involves.filereader.repository.CsvRepository;
 
-public class CountDistinctCommandTest {
-
-	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-	CsvRepository repo;
-    CommandExecuter executer;
-
-	@Before
-	public void init() {
-		CSVReader csvReader = new CSVReader();
-		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
-		repo = csvReader.process(br);
-		executer = new CommandExecuter(repo);
-	    System.setOut(new PrintStream(output));
-
-	}
+public class CountDistinctCommandTest extends AbstractCommandTest {
 
 	@Test
 	public void CountDistinctCommmandIdTest() {
@@ -51,6 +29,48 @@ public class CountDistinctCommandTest {
 	public void CountDistinctCommmandCapitalTest() {
 		executer.executeCommand("count distinct capital");
 	    Assert.assertEquals("Total: 2", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandLonTest() {
+		executer.executeCommand("count distinct lon");
+	    Assert.assertEquals("Total: 70", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandLatTest() {
+		executer.executeCommand("count distinct lat");
+	    Assert.assertEquals("Total: 70", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandSemAcentoTest() {
+		executer.executeCommand("count distinct no_accents");
+	    Assert.assertEquals("Total: 70", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandNomeAlternativoTest() {
+		executer.executeCommand("count distinct alternative_names");
+	    Assert.assertEquals("Total: 2", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandMicroRegiaoTest() {
+		executer.executeCommand("count distinct microregion");
+	    Assert.assertEquals("Total: 15", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandMesoRegiaoTest() {
+		executer.executeCommand("count distinct mesoregion");
+	    Assert.assertEquals("Total: 6", output.toString().trim());
+	}
+
+	@Test
+	public void CountDistinctCommmandErroTest() {
+		executer.executeCommand("count distinct erro");
+	    Assert.assertEquals("A coluna especificada não existe!", output.toString().trim());
 	}
 
 	@Test(expected = InvalidCommandException.class)
