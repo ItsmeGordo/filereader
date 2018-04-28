@@ -18,8 +18,7 @@ public abstract class AbstractFileReader {
 			InputStream inputStream = new FileInputStream(file);
 			return new BufferedReader(new InputStreamReader(inputStream));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("O arquivo mandado não foi encontrado");
 			return null;
 		}
 

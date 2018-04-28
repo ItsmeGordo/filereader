@@ -35,7 +35,7 @@ public class FilterCommand implements Command {
 			repository.getCidades().stream().filter(c -> c.getLongitude().toString().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.LATITUDE:
-			repository.getCidades().stream().filter(c -> c.getLatitude().toString().equals(valor)).forEach(c -> repository.printCidadesFilter(c));
+			repository.getCidades().stream().filter(c -> c.getLatitude().equals(new Double(valor))).forEach(c -> repository.printCidadesFilter(c));
 			break;
 		case CsvRepository.NOME_SEM_ACENTO:
 			repository.getCidades().stream().filter(c -> c.getNomeSemAcento().equals(valor)).forEach(c -> repository.printCidadesFilter(c));

@@ -68,8 +68,8 @@ public class CsvRepository {
 		buffer.append(cidade.getUf() + ",");
 		buffer.append(cidade.getNome() + ",");
 		buffer.append(cidade.getCapital() + ",");
-		buffer.append(cidade.getLatitude() + ",");
 		buffer.append(cidade.getLongitude() + ",");
+		buffer.append(cidade.getLatitude() + ",");
 		buffer.append(cidade.getNomeSemAcento() + ",");
 		buffer.append(cidade.getNomeAlternativo() + ",");
 		buffer.append(cidade.getMicroRegiao() + ",");
