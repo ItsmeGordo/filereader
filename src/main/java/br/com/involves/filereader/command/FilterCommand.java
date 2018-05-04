@@ -20,6 +20,7 @@ public class FilterCommand implements Command {
 
 	@Override
 	public void execute() {
+    	PrintDataUtils.printCollectionData(dados.get(0).keySet());
 		dados.stream().filter(c -> c.get(coluna).toString().equals(valor)).forEach(c -> PrintDataUtils.printCollectionData(c.values()));
 
 	}
