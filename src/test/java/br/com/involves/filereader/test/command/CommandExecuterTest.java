@@ -1,19 +1,30 @@
 package br.com.involves.filereader.test.command;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.involves.filereader.exception.InvalidCommandException;
 
 public class CommandExecuterTest extends AbstractCommandTest {
 
-	@Test(expected = InvalidCommandException.class)
+	@Test
 	public void comandoPequenoTest() {
-		executer.executeCommand("count");
+		String command = "count";
+		try {
+			executer.executeCommand(command);
+		} catch (InvalidCommandException e) {
+			Assert.assertEquals("O comando " + command + " não é um comando conhecido pelo sistema!", e.getMessage());
+		}
 	}
 
-	@Test(expected = InvalidCommandException.class)
+	@Test
 	public void commandoErradoTest() {
-		executer.executeCommand("comando todo errado");
+		String command = "comando todo errado";
+		try {
+			executer.executeCommand(command);
+		} catch (InvalidCommandException e) {
+			Assert.assertEquals("O comando " + command + " não é um comando conhecido pelo sistema!", e.getMessage());
+		}
 	}
 
 }

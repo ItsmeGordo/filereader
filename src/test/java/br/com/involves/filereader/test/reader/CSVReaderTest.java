@@ -2,13 +2,14 @@ package br.com.involves.filereader.test.reader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.involves.filereader.dto.Cidade;
 import br.com.involves.filereader.reader.CSVReader;
-import br.com.involves.filereader.repository.CsvRepository;
 
 public class CSVReaderTest {
 
@@ -38,29 +39,39 @@ public class CSVReaderTest {
 	public void processTest() {
 		CSVReader csvReader = new CSVReader();
 		BufferedReader br = csvReader.reader("cidades.csv", "UTF-8");
-		CsvRepository repo = csvReader.process(br);
+		List<Map<String, String>> repo = csvReader.process(br);
 
-		Assert.assertNotNull("Objeto cidade retornou nulo", repo.getCidades());
-		Assert.assertEquals("A quantidade de linhas não é a esperada", 70, repo.getCidades().size());
+		Assert.assertNotNull("Objeto reposit retornou nulo", repo);
+		Assert.assertEquals("A quantidade de linhas não é a esperada", 70, repo.size());
 
-		Cidade cidade = repo.getCidades().get(0);
-		Cidade cidadeExpected = new Cidade.Builder().id(1100015L).uf("RO").nome("Alta Floresta D'Oeste")
-				.longitude(new Double("-61.9998238963")).latitude(new Double("-11.9355403048"))
-				.nomeSemAcento("Alta Floresta D'Oeste").microRegiao("Cacoal").mesoRegiao("Leste Rondoniense").build();
+		Map<String, String> city = repo.get(0);
+		
+		Map<String, String> cityExpected = cityExpected();
 
-		Assert.assertEquals("O id ibge da primeira linha não é o esperado", cidadeExpected.getId(), cidade.getId());
-		Assert.assertEquals("O UF da primeira linha não é o esperado", cidadeExpected.getUf(), cidade.getUf());
-		Assert.assertEquals("O nome da primeira linha não é o esperado", cidadeExpected.getNome(), cidade.getNome());
-		Assert.assertEquals("A latitude da primeira linha não é o esperado", cidadeExpected.getLatitude(),
-				cidade.getLatitude());
-		Assert.assertEquals("A longitude da primeira linha não é o esperado", cidadeExpected.getLongitude(),
-				cidade.getLongitude());
-		Assert.assertEquals("O nome sem acento da primeira linha não é o esperado", cidadeExpected.getNomeSemAcento(),
-				cidade.getNomeSemAcento());
-		Assert.assertEquals("A microRegiao da primeira linha não é o esperado", cidadeExpected.getMicroRegiao(),
-				cidade.getMicroRegiao());
-		Assert.assertEquals("A mesoRegiao da primeira linha não é o esperado", cidadeExpected.getMesoRegiao(),
-				cidade.getMesoRegiao());
+		Assert.assertEquals("O id ibge da primeira linha não é o esperado", cityExpected.get("ibge_id"), city.get("ibge_id"));
+		Assert.assertEquals("O UF da primeira linha não é o esperado", cityExpected.get("uf"), city.get("uf"));
+		Assert.assertEquals("O nome da primeira linha não é o esperado", cityExpected.get("name"), city.get("name"));
+		Assert.assertEquals("A latitude da primeira linha não é o esperado", cityExpected.get("lat"), city.get("lat"));
+		Assert.assertEquals("A longitude da primeira linha não é o esperado", cityExpected.get("lon"), city.get("lon"));
+		Assert.assertEquals("O nome sem acento da primeira linha não é o esperado", cityExpected.get("no_accents"), city.get("no_accents"));
+		Assert.assertEquals("A microRegiao da primeira linha não é o esperado", cityExpected.get("microregion"), city.get("microregion"));
+		Assert.assertEquals("A mesoRegiao da primeira linha não é o esperado", cityExpected.get("mesoregion"), city.get("mesoregion"));
 
+	}
+	
+	private Map<String, String> cityExpected() {
+		Map<String, String> retorno = new HashMap<>();
+
+		retorno.put("ibge_id", "1100015");
+		retorno.put("uf", "RO");
+		retorno.put("name", "Alta Floresta D'Oeste");
+		retorno.put("capital", "");
+		retorno.put("lon", "-61.9998238963");
+		retorno.put("lat", "-11.9355403048");
+		retorno.put("no_accents", "Alta Floresta D'Oeste");
+		retorno.put("alternative_names", "");
+		retorno.put("microregion", "Cacoal");
+		retorno.put("mesoregion", "Leste Rondoniense");
+		return retorno;
 	}
 }

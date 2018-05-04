@@ -1,23 +1,21 @@
 package br.com.involves.filereader.command;
 
 import java.util.List;
-
-import br.com.involves.filereader.dto.Cidade;
+import java.util.Map;
 
 public class CountCommand implements Command {
 
-	private List<Cidade> cidades;
+	List<Map<String, String>> dados;	
 	
-	
-	public CountCommand(List<Cidade> cidades) {
+	public CountCommand(List<Map<String, String>> dados) {
 		super();
-		this.cidades = cidades;
+		this.dados = dados;
 	}
 
 
 	@Override
 	public void execute() {
-		long count = cidades.size();
+		long count = dados.size();
 		System.out.println("Total: " + count);
 	}
 

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.involves.filereader.exception.InvalidCommandException;
+import br.com.involves.filereader.exception.InvalidFilterException;
 
 public class CountDistinctCommandTest extends AbstractCommandTest {
 
@@ -69,8 +70,11 @@ public class CountDistinctCommandTest extends AbstractCommandTest {
 
 	@Test
 	public void CountDistinctCommmandErroTest() {
-		executer.executeCommand("count distinct erro");
-	    Assert.assertEquals("A coluna especificada não existe!", output.toString().trim());
+		try {
+			executer.executeCommand("count distinct erro");
+		} catch (InvalidFilterException e) {
+		    Assert.assertEquals("A coluna especificada não existe!", e.getMessage());
+		}
 	}
 
 	@Test(expected = InvalidCommandException.class)
